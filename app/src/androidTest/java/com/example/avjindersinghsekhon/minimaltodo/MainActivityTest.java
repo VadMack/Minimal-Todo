@@ -2,11 +2,16 @@ package com.example.avjindersinghsekhon.minimaltodo;
 
 import android.support.test.espresso.Espresso;
 import android.support.test.espresso.action.ViewActions;
+import android.support.test.espresso.intent.Intents;
+import android.support.test.espresso.intent.rule.IntentsTestRule;
 import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
+import com.example.avjindersinghsekhon.minimaltodo.About.AboutActivity;
+import com.example.avjindersinghsekhon.minimaltodo.AddToDo.AddToDoActivity;
 import com.example.avjindersinghsekhon.minimaltodo.Main.MainActivity;
+import com.example.avjindersinghsekhon.minimaltodo.Settings.SettingsActivity;
 
 import junit.framework.TestCase;
 
@@ -14,6 +19,9 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import static android.support.test.espresso.intent.Intents.intended;
+import static android.support.test.espresso.intent.matcher.IntentMatchers.hasComponent;
 
 import static android.support.test.InstrumentationRegistry.getInstrumentation;
 import static android.support.test.espresso.Espresso.onView;
@@ -28,7 +36,7 @@ import static org.hamcrest.core.AllOf.allOf;
 public class MainActivityTest {
 
     @Rule
-    public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule<>(
+    public IntentsTestRule<MainActivity> mActivityRule = new IntentsTestRule<>(
             MainActivity.class);
 
     /*@Before
@@ -45,7 +53,8 @@ public class MainActivityTest {
     @Test
     public void checkAddToDoItemFAB() {
         onView(ViewMatchers.withId(R.id.addToDoItemFAB))
-                .check(matches(isDisplayed()));
+                .check(matches(allOf(isDisplayed(),
+                        isClickable())));
     }
 
     @Test
@@ -54,19 +63,13 @@ public class MainActivityTest {
                 .check(matches(isDisplayed()));
     }
 
-    @Test
-    public void isClickableAddToDoItemFAB() {
-        onView(ViewMatchers.withId(R.id.addToDoItemFAB))
-                .check(matches(isClickable()));
-    }
-
-    @Test
+    /*@Test
     public void clickAddToDoItemFAB() {
         onView(ViewMatchers.withId(R.id.addToDoItemFAB))
                 .perform(ViewActions.click());
         onView(ViewMatchers.withId(R.id.toDoCustomTextInput))
                 .check(matches(isDisplayed()));
-    }
+    }*/
 
     @Test
     public void checkActionsBar() {
@@ -78,6 +81,27 @@ public class MainActivityTest {
     }
 
     @Test
-    public void testOnOptionsItemSelected() {
+    public void startAddToDoFromAddToDoItemFAB(){
+        onView(ViewMatchers.withId(R.id.addToDoItemFAB))
+                .perform(ViewActions.click());
+        intended(hasComponent(AddToDoActivity.class.getName()));
     }
+
+    @Test
+    public void startSettingsActivityFromOptionsBar(){
+        openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
+        onView(ViewMatchers.withText(R.string.action_settings))
+                .perform(ViewActions.click());
+        intended(hasComponent(SettingsActivity.class.getName()));
+    }
+
+    @Test
+    public void startAboutActivityFromOptionsBar(){
+        openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
+        onView(ViewMatchers.withText(R.string.about))
+                .perform(ViewActions.click());
+        intended(hasComponent(AboutActivity.class.getName()));
+    }
+
+
 }
