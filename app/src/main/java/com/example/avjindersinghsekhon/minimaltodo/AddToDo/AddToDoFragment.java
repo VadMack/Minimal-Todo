@@ -130,11 +130,11 @@ public class AddToDoFragment extends AppDefaultFragment implements DatePickerDia
 
         mUserToDoItem = (ToDoItem) getActivity().getIntent().getSerializableExtra(MainFragment.TODOITEM);
 
-        mUserEnteredText = mUserToDoItem.getToDoText();
-        mUserEnteredDescription = mUserToDoItem.getmToDoDescription();
-        mUserHasReminder = mUserToDoItem.hasReminder();
-        mUserReminderDate = mUserToDoItem.getToDoDate();
-        mUserColor = mUserToDoItem.getTodoColor();
+        //mUserEnteredText = mUserToDoItem.getToDoText();
+        //mUserEnteredDescription = mUserToDoItem.getmToDoDescription();
+        //mUserHasReminder = mUserToDoItem.hasReminder();
+        //mUserReminderDate = mUserToDoItem.getToDoDate();
+        //mUserColor = mUserToDoItem.getTodoColor();
 
 
 //        if(mUserToDoItem.getLastEdited()==null) {
@@ -269,7 +269,7 @@ public class AddToDoFragment extends AppDefaultFragment implements DatePickerDia
                     mUserReminderDate = null;
                 }
                 mUserHasReminder = isChecked;
-                setDateAndTimeEditText();
+                //setDateAndTimeEditText();
                 setEnterDateLayoutVisibleWithAnimations(isChecked);
                 hideKeyboard(mToDoTextBodyEditText);
                 hideKeyboard(mToDoTextBodyDescription);
@@ -305,14 +305,14 @@ public class AddToDoFragment extends AppDefaultFragment implements DatePickerDia
 
                 Date date;
                 hideKeyboard(mToDoTextBodyEditText);
-                if (mUserToDoItem.getToDoDate() != null) {
+                /*if (mUserToDoItem.getToDoDate() != null) {
 //                    date = mUserToDoItem.getToDoDate();
                     date = mUserReminderDate;
                 } else {
                     date = new Date();
-                }
+                }*/
                 Calendar calendar = Calendar.getInstance();
-                calendar.setTime(date);
+                //calendar.setTime(date);
                 int year = calendar.get(Calendar.YEAR);
                 int month = calendar.get(Calendar.MONTH);
                 int day = calendar.get(Calendar.DAY_OF_MONTH);
@@ -334,14 +334,14 @@ public class AddToDoFragment extends AppDefaultFragment implements DatePickerDia
 
                 Date date;
                 hideKeyboard(mToDoTextBodyEditText);
-                if (mUserToDoItem.getToDoDate() != null) {
+                /*if (mUserToDoItem.getToDoDate() != null) {
 //                    date = mUserToDoItem.getToDoDate();
                     date = mUserReminderDate;
                 } else {
                     date = new Date();
-                }
+                }*/
                 Calendar calendar = Calendar.getInstance();
-                calendar.setTime(date);
+                //calendar.setTime(date);
                 int hour = calendar.get(Calendar.HOUR_OF_DAY);
                 int minute = calendar.get(Calendar.MINUTE);
 
@@ -355,7 +355,7 @@ public class AddToDoFragment extends AppDefaultFragment implements DatePickerDia
 
 //        mDefaultTimeOptions12H = new String[]{"9:00 AM", "12:00 PM", "3:00 PM", "6:00 PM", "9:00 PM", "12:00 AM"};
 //        mDefaultTimeOptions24H = new String[]{"9:00", "12:00", "15:00", "18:00", "21:00", "24:00"};
-        setDateAndTimeEditText();
+        //setDateAndTimeEditText();
 
 //
 
@@ -414,7 +414,7 @@ public class AddToDoFragment extends AppDefaultFragment implements DatePickerDia
 
     }
 
-    private void setDateAndTimeEditText() {
+    /*private void setDateAndTimeEditText() {
 
         if (mUserToDoItem.hasReminder() && mUserReminderDate != null) {
             String userDate = formatDate("d MMM, yyyy", mUserReminderDate);
@@ -470,7 +470,7 @@ public class AddToDoFragment extends AppDefaultFragment implements DatePickerDia
 //            }
 //            mTimeEditText.setText(timeOption);
         }
-    }
+    }*/
 
     private String getThemeSet() {
         return getActivity().getSharedPreferences(MainFragment.THEME_PREFERENCES, MODE_PRIVATE).getString(MainFragment.THEME_SAVED, MainFragment.LIGHTTHEME);

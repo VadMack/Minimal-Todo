@@ -1,4 +1,4 @@
-package com.example.avjindersinghsekhon.minimaltodo;
+package com.example.avjindersinghsekhon.minimaltodo.Main;
 
 import android.support.test.espresso.Espresso;
 import android.support.test.espresso.action.ViewActions;
@@ -11,6 +11,7 @@ import android.support.test.runner.AndroidJUnit4;
 import com.example.avjindersinghsekhon.minimaltodo.About.AboutActivity;
 import com.example.avjindersinghsekhon.minimaltodo.AddToDo.AddToDoActivity;
 import com.example.avjindersinghsekhon.minimaltodo.Main.MainActivity;
+import com.example.avjindersinghsekhon.minimaltodo.R;
 import com.example.avjindersinghsekhon.minimaltodo.Settings.SettingsActivity;
 
 import junit.framework.TestCase;
@@ -102,6 +103,5 @@ public class MainActivityTest {
                 .perform(ViewActions.click());
         intended(hasComponent(AboutActivity.class.getName()));
     }
-
-
+    
 }
